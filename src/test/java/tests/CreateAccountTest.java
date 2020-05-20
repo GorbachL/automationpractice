@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import models.CreateAnAccountModel;
 import org.junit.jupiter.api.Test;
 import pages.CreateAnAccountPage;
+import utils.RandomUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CreateAccountTest extends BaseTest {
 
 	@Description("Account must be created")
-	@Step("Fill in all the required fields and click the Register button.")
+	@Step("Fill in all the required fields and click the Register button")
 	@Test
-	void completeRegistration() {
+	void completeRegistrationTest() {
 		CreateAnAccountModel accountModel = CreateAnAccountModel.builder()
 				.FirstName("Elena")
 				.LastName("G")
@@ -28,13 +29,17 @@ class CreateAccountTest extends BaseTest {
 				.AddressAlias("lenag1@mailinator.com")
 				.build();
 
+		RandomUtil randomUtil = new RandomUtil();
+
 		CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage();
-		createAnAccountPage.openPage();
-		createAnAccountPage.enterEmail(prop.get("userEmail"));
-		createAnAccountPage.clickCreateAnAccountButton();
-		createAnAccountPage.fillInRequiredInputFields(accountModel);
-		createAnAccountPage.selectRequiredDropdownOption(accountModel);
-		createAnAccountPage.clickRegisterButton();
+		createAnAccountPage
+				.openPage()
+				.enterEmail(prop.get("userEmail") + randomUtil.usernameAffix() + prop.get("emailAffix"))
+				.clickCreateAnAccountButton()
+				.clearAliasAddress()
+				.fillInRequiredInputFields(accountModel)
+				.selectRequiredDropdownOption(accountModel)
+				.clickRegisterButton();
 
 		String actualResult = createAnAccountPage.accountWasCreated();
 		String expectedResult = accountModel.getFirstName() + " " + accountModel.getLastName();

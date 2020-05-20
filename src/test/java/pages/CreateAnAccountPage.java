@@ -14,9 +14,10 @@ public class CreateAnAccountPage extends BasePage {
 	private By createAnAccountButton = By.id("SubmitCreate");
 	private By registerButton = By.id("submitAccount");
 	private By accountUserName = By.cssSelector(".header_user_info .account");
+	private By aliasAddress = By.id("alias");
 
 	@Override
-	public BasePage openPage() {
+	public CreateAnAccountPage openPage() {
 		driver.get(URL);
 		isPageOpened();
 		return this;
@@ -41,7 +42,7 @@ public class CreateAnAccountPage extends BasePage {
 		return this;
 	}
 
-	public void fillInRequiredInputFields(CreateAnAccountModel accountModel) {
+	public CreateAnAccountPage fillInRequiredInputFields(CreateAnAccountModel accountModel) {
 		new APInput().write(driver, "First name ", accountModel.getFirstName());
 		new APInput().write(driver, "Last name ", accountModel.getLastName());
 		new APInput().write(driver, "Password ", accountModel.getPassword());
@@ -50,14 +51,22 @@ public class CreateAnAccountPage extends BasePage {
 		new APInput().write(driver, "Zip/Postal Code ", accountModel.getPostalCode());
 		new APInput().write(driver, "Mobile phone ", accountModel.getMobilePhone());
 		new APInput().write(driver, "Assign an address alias for future reference. ", accountModel.getAddressAlias());
+		return this;
 	}
 
-	public void selectRequiredDropdownOption(CreateAnAccountModel accountModel) {
+	public CreateAnAccountPage selectRequiredDropdownOption(CreateAnAccountModel accountModel) {
 		new APSelector().write(driver, "State ", accountModel.getState());
+		return this;
 	}
 
-	public void clickRegisterButton() {
+	public CreateAnAccountPage clearAliasAddress() {
+		driver.findElement(aliasAddress).clear();
+		return this;
+	}
+
+	public MyAccountPage clickRegisterButton() {
 		driver.findElement(registerButton).click();
+		return new MyAccountPage();
 	}
 
 	public String accountWasCreated() {
