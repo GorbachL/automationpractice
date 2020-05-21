@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.JavascriptUtilities;
+import utils.ScreenshotUtils;
 
 public class ProductWomenPage extends BasePage {
 
@@ -29,6 +30,7 @@ public class ProductWomenPage extends BasePage {
 		new JavascriptUtilities().scrollToElement(driver, driver.findElement(firstItemFromPresentedProduct));
 		driver.findElement(firstItemFromPresentedProduct).click();
 		driver.findElement(addToWishList).click();
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.JavascriptUtilities;
+import utils.ScreenshotUtils;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -39,10 +40,12 @@ public class MyWishListPage extends BasePage {
 	}
 
 	public MyWishListPage deleteMyWishListFromAccount() {
-		new JavascriptUtilities().scrollToElement(driver, driver.findElement(saveWishListButton));
+		driver.findElement(saveWishListButton).click();
 		driver.findElement(deleteWishListButton).click();
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
+		driver.navigate().refresh();
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 
@@ -57,13 +60,15 @@ public class MyWishListPage extends BasePage {
 	}
 
 	public MyWishListPage clickViewToSeeAddedItemInWishList() {
-		new JavascriptUtilities().clickJs(driver, driver.findElement(viewItemInWishListTable));
+		driver.findElement(viewItemInWishListTable).click();
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 
 	public MyWishListPage getItemDetails() {
 		new JavascriptUtilities().scrollToElement(driver, driver.findElement(itemDetail));
 		driver.findElement(itemDetail).click();
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 
@@ -76,6 +81,7 @@ public class MyWishListPage extends BasePage {
 		driver.findElement(wishListNameInput).sendKeys(name);
 		driver.findElement(saveWishListButton).click();
 		driver.navigate().refresh();
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 

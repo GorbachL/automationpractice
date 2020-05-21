@@ -6,6 +6,7 @@ import models.CreateAnAccountModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.ScreenshotUtils;
 
 public class CreateAnAccountPage extends BasePage {
 
@@ -51,6 +52,7 @@ public class CreateAnAccountPage extends BasePage {
 		new APInput().write(driver, "Zip/Postal Code ", accountModel.getPostalCode());
 		new APInput().write(driver, "Mobile phone ", accountModel.getMobilePhone());
 		new APInput().write(driver, "Assign an address alias for future reference. ", accountModel.getAddressAlias());
+		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
 

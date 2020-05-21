@@ -54,6 +54,5 @@ class AutoCreatedWishListTest extends BaseTest {
 				.backToAccountPage()
 				.openMyWishList()
 				.deleteMyWishListFromAccount();
-		driver.navigate().refresh();
 	}
 }

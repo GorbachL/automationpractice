@@ -66,6 +66,5 @@ class CustomWishListTest extends BaseTest {
 				.backToAccountPage()
 				.openMyWishList()
 				.deleteMyWishListFromAccount();
-		driver.navigate().refresh();
 	}
 }
