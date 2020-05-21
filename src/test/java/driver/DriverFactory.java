@@ -13,6 +13,9 @@ public class DriverFactory {
 			case FIREFOX:
 				driverManager = new FirefoxDriverManager();
 				break;
+			case GRID:
+				driverManager = new GridChromeDriverManager();
+				break;
 			default:
 				driverManager = null;
 				break;
