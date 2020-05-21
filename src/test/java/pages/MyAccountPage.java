@@ -39,6 +39,11 @@ public class MyAccountPage extends BasePage {
 		driver.findElement(accountUserNameTile).click();
 		return new MyAccountPage();
 	}
+
+	public LoginPage signOut() {
+		driver.findElement(signOutButton).click();
+		return new LoginPage();
+	}
 }
 
 

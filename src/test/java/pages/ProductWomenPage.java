@@ -9,7 +9,7 @@ public class ProductWomenPage extends BasePage {
 	private By navigationPage = By.cssSelector(".navigation_page");
 	private By firstItemFromPresentedProduct = By.cssSelector(".product_list >li:nth-child(1)");
 	private By addToWishList = By.cssSelector(".addToWishlist ");
-	private By closePopupAddedToWishList = By.cssSelector("a.fancybox-item.fancybox-close");
+	private By closePopupAfterAddedItemToWishList = By.cssSelector("a.fancybox-item.fancybox-close");
 	private By backToHomePage = By.cssSelector(".home");
 	private By accountUserNameTile = By.cssSelector(".account");
 	private By itemName = By.cssSelector("[itemprop='name']");
@@ -25,7 +25,7 @@ public class ProductWomenPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(navigationPage));
 	}
 
-	public ProductWomenPage addToWishListItem() {
+	public ProductWomenPage addItemToWishList() {
 		new JavascriptUtilities().scrollToElement(driver, driver.findElement(firstItemFromPresentedProduct));
 		driver.findElement(firstItemFromPresentedProduct).click();
 		driver.findElement(addToWishList).click();
@@ -33,7 +33,7 @@ public class ProductWomenPage extends BasePage {
 	}
 
 	public ProductWomenPage closePopupThatItemAddedToWishList() {
-		driver.findElement(closePopupAddedToWishList).click();
+		driver.findElement(closePopupAfterAddedItemToWishList).click();
 		return this;
 	}
 

@@ -9,15 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyWishListPage extends BasePage {
 
-	private By myWishListsPage = By.id("#mywishlist");
-	private By myWishListAdded = By.xpath("//tr[contains(@id,'wishlist')]");
+	private By myWishListsTitle = By.cssSelector(".page-heading");
+	private By myWishListInTheTable = By.xpath("//tr[contains(@id,'wishlist')]");
 	private By accountUserNameTile = By.cssSelector(".account");
 	private By productWomenTile = By.cssSelector(".sf-menu>li:nth-child(1)");
-	private By viewItemInWishList = By.xpath("//td[@class='wishlist_delete']//preceding::td/a");
+	private By viewItemInWishListTable = By.xpath("//td[@class='wishlist_delete']//preceding::td/a");
+	private By wishListNameInTheTable = By.xpath("//td[@class='bold align_center']//preceding::td/a");
 	private By itemDetail = By.cssSelector(".product_image>a");
 	private By itemName = By.cssSelector("[itemprop='name']");
-	private By deleteWishList = By.cssSelector(".wishlist_delete>a");
-	private By saveNewWishList = By.cssSelector(".submit");
+	private By deleteWishListButton = By.cssSelector(".wishlist_delete>a");
+	private By saveWishListButton = By.cssSelector(".submit .btn");
+	private By wishListNameInput = By.cssSelector(".inputTxt.form-control");
+	private By signOutButton = By.cssSelector(".logout");
 
 	@Override
 	public MyWishListPage openPage() {
@@ -27,23 +30,20 @@ public class MyWishListPage extends BasePage {
 
 	@Override
 	public void isPageOpened() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(myWishListsPage));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(myWishListsTitle));
 	}
 
 	public MyWishListPage verifyWishListAddedToAccount() {
-		assertTrue(driver.findElement(myWishListAdded).isDisplayed());
+		assertTrue(driver.findElement(myWishListInTheTable).isDisplayed());
 		return this;
 	}
 
 	public MyWishListPage deleteMyWishListFromAccount() {
-		new JavascriptUtilities().scrollToElement(driver, driver.findElement(saveNewWishList));
-		driver.findElement(deleteWishList).click();
+		new JavascriptUtilities().scrollToElement(driver, driver.findElement(saveWishListButton));
+		driver.findElement(deleteWishListButton).click();
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 		return this;
-	}
-
-	public void verifyWishListExist() {
 	}
 
 	public MyAccountPage backToAccountPage() {
@@ -57,7 +57,7 @@ public class MyWishListPage extends BasePage {
 	}
 
 	public MyWishListPage clickViewToSeeAddedItemInWishList() {
-		new JavascriptUtilities().clickJs(driver, driver.findElement(viewItemInWishList));
+		new JavascriptUtilities().clickJs(driver, driver.findElement(viewItemInWishListTable));
 		return this;
 	}
 
@@ -69,6 +69,23 @@ public class MyWishListPage extends BasePage {
 
 	public String getNameOfItem() {
 		return driver.findElement(itemName).getText();
+	}
+
+	public MyWishListPage addCustomWishList(String name) {
+		driver.findElement(wishListNameInput).click();
+		driver.findElement(wishListNameInput).sendKeys(name);
+		driver.findElement(saveWishListButton).click();
+		driver.navigate().refresh();
+		return this;
+	}
+
+	public String getMyWishListName() {
+		return driver.findElement(wishListNameInTheTable).getText();
+	}
+
+	public LoginPage signOut() {
+		driver.findElement(signOutButton).click();
+		return new LoginPage();
 	}
 }
 

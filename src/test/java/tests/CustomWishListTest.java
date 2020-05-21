@@ -5,20 +5,20 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import pages.MyAccountPage;
 import pages.LoginPage;
+import pages.MyAccountPage;
 import pages.MyWishListPage;
 import pages.ProductWomenPage;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Feature("Verify the ability to add to auto-created WishList")
-class AutoCreatedWishListTest extends BaseTest {
+@Feature("Verify the ability to add to your Wishlist")
+class CustomWishListTest extends BaseTest {
 
-	@Description("WishList must be created automatically")
-	@Step("Go to any product detail page and click Add to Wishlist button")
+	@Description("Selected Item must be added to custom WishList")
+	@Step("Create custom WishList and add Item")
 	@Test
-	void createWishListTest() {
+	void createCustomWishListTest() {
 		LoginPage loginPage = new LoginPage();
 		loginPage
 				.openPage()
@@ -30,21 +30,33 @@ class AutoCreatedWishListTest extends BaseTest {
 
 		myAccountPage
 				.openMyWishList()
+				.addCustomWishList(prop.get("name"));
+
+		String myWishListName = myWishListPage.getMyWishListName();
+
+		myWishListPage
 				.openProductWomenPage();
 		productWomenPage
 				.addItemToWishList()
 				.closePopupThatItemAddedToWishList()
 				.openAddedToWishListItem();
-		String actualResult = productWomenPage.getItemName();
+
+		String actualItemName = productWomenPage.getItemName();
+
 		productWomenPage
 				.backToAccountPage();
 		myAccountPage
 				.openMyWishList()
-				.verifyWishListAddedToAccount()
+				.verifyWishListAddedToAccount();
+
+		myWishListPage
 				.clickViewToSeeAddedItemInWishList()
 				.getItemDetails();
-		String expectedResult = myWishListPage.getNameOfItem();
-		assertEquals(expectedResult, actualResult);
+
+		String expectedItemName = myWishListPage.getNameOfItem();
+
+		assertEquals(prop.get("name"), myWishListName);
+		assertEquals(expectedItemName, actualItemName);
 	}
 
 	@AfterEach
