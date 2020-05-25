@@ -18,7 +18,7 @@ java -jar selenium-server-standalone-3.9.0.jar -role hub
 java -Dwebdriver.chrome.driver=C:\Users\LenaGorbach\IdeaProjects\automationpractice\src\test\resources\webdrivers\chromedriver.exe -jar selenium-server-standalone-3.9.0.jar -role node -hub http://localhost:4444/grid/register
 
 ***
->>sample of log for failed test
+>>sample log for failed test
 
 2020-05-22 00:31:42.357 INFO [main] [utils.MyTestWatcher] [26] - ==== FAILED TEST loginRegisteredUserTest() ====
 2020-05-22 00:31:42.361 INFO [main] [utils.MyTestWatcher] [27] - java.net.SocketTimeoutException: timeout

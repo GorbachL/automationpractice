@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import pages.MyAccountPage;
 import pages.LoginPage;
 import pages.MyWishListPage;
-import pages.ProductWomenPage;
+import pages.WomenPage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Feature("Verify the ability to add to auto-created WishList")
+@Feature("AP-3 Verify the ability to add to auto-created WishList")
 class AutoCreatedWishListTest extends BaseTest {
 
 	@Description("WishList must be created automatically")
@@ -26,17 +26,17 @@ class AutoCreatedWishListTest extends BaseTest {
 
 		MyAccountPage myAccountPage = new MyAccountPage();
 		MyWishListPage myWishListPage = new MyWishListPage();
-		ProductWomenPage productWomenPage = new ProductWomenPage();
+		WomenPage womenPage = new WomenPage();
 
 		myAccountPage
 				.openMyWishList()
-				.openProductWomenPage();
-		productWomenPage
+				.openWomenPage();
+		womenPage
 				.addItemToWishList()
 				.closePopupThatItemAddedToWishList()
 				.openAddedToWishListItem();
-		String actualResult = productWomenPage.getItemName();
-		productWomenPage
+		String actualResult = womenPage.getItemName();
+		womenPage
 				.backToAccountPage();
 		myAccountPage
 				.openMyWishList()

@@ -9,7 +9,7 @@ import pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Feature("Verify the ability to login in account")
+@Feature("AP-2 Verify the ability to login in account")
 class LogInAsRegisteredUserTest extends BaseTest {
 
 	@Description("User must be able to login")

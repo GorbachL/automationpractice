@@ -29,7 +29,7 @@ public class CreateAnAccountPage extends BasePage {
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(createAnAccountButton));
 		} catch (TimeoutException ex) {
-			throw new TimeoutException("CREATE AN ACCOUNT Page is not opened");
+			throw new TimeoutException("AUTHENTICATION Page is not opened");
 		}
 	}
 

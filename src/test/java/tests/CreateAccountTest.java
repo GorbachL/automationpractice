@@ -10,7 +10,7 @@ import utils.RandomUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Feature("Verify the ability to create an account")
+@Feature("AP-1 Verify the ability to create an account")
 class CreateAccountTest extends BaseTest {
 
 	@Description("Account must be created")

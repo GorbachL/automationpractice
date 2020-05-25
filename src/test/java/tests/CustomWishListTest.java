@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
 import pages.MyWishListPage;
-import pages.ProductWomenPage;
+import pages.WomenPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Feature("Verify the ability to add to your Wishlist")
+@Feature("AP-4 Verify the ability to add to your Wishlist")
 class CustomWishListTest extends BaseTest {
 
 	@Description("Selected Item must be added to custom WishList")
@@ -26,24 +26,22 @@ class CustomWishListTest extends BaseTest {
 
 		MyAccountPage myAccountPage = new MyAccountPage();
 		MyWishListPage myWishListPage = new MyWishListPage();
-		ProductWomenPage productWomenPage = new ProductWomenPage();
+		WomenPage womenPage = new WomenPage();
 
 		myAccountPage
 				.openMyWishList()
 				.addCustomWishList(prop.get("name"));
-
 		String myWishListName = myWishListPage.getMyWishListName();
 
 		myWishListPage
-				.openProductWomenPage();
-		productWomenPage
+				.openWomenPage();
+		womenPage
 				.addItemToWishList()
 				.closePopupThatItemAddedToWishList()
 				.openAddedToWishListItem();
+		String actualItemName = womenPage.getItemName();
 
-		String actualItemName = productWomenPage.getItemName();
-
-		productWomenPage
+		womenPage
 				.backToAccountPage();
 		myAccountPage
 				.openMyWishList()
@@ -52,7 +50,6 @@ class CustomWishListTest extends BaseTest {
 		myWishListPage
 				.clickViewToSeeAddedItemInWishList()
 				.getItemDetails();
-
 		String expectedItemName = myWishListPage.getNameOfItem();
 
 		assertEquals(prop.get("name"), myWishListName);

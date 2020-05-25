@@ -3,12 +3,15 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MyAccountPage extends BasePage {
 
 	private By accountUserNameTile = By.cssSelector(".account");
+	private By pageName = By.cssSelector(".page-heading");
 	private By signOutButton = By.cssSelector(".logout");
 	private By myWishListTile = By.cssSelector(".lnk_wishlist");
-	private By productWomenTile = By.cssSelector(".sf-menu>li:nth-child(1)");
+	private By womenTab = By.cssSelector(".sf-menu>li:nth-child(1)");
 
 	@Override
 	public MyAccountPage openPage() {
@@ -19,6 +22,9 @@ public class MyAccountPage extends BasePage {
 	@Override
 	public void isPageOpened() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(accountUserNameTile));
+		String openPage = driver.findElement(pageName).getText();
+		String expectedResult = "MY ACCOUNT";
+		assertEquals(expectedResult, openPage);
 	}
 
 	public String accountUserName() {
@@ -30,9 +36,9 @@ public class MyAccountPage extends BasePage {
 		return new MyWishListPage();
 	}
 
-	public ProductWomenPage openProductWomenPage() {
-		driver.findElement(productWomenTile).click();
-		return new ProductWomenPage();
+	public WomenPage openWomenPage() {
+		driver.findElement(womenTab).click();
+		return new WomenPage();
 	}
 
 	public MyAccountPage backToAccountPage() {
