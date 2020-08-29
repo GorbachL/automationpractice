@@ -28,7 +28,11 @@ class AddItemsToChartTest extends BaseTest {
 		LoginPage loginPage = new LoginPage();
 		loginPage
 				.openPage()
+				//TODO
+				// Strange formatting, you do not need to move first method in new line, it is ok do it starting from the second one
 				.loginAlreadyRegisteredUser(prop.get("username"), prop.get("password"));
+		//TODO
+		// This method return MyAccountPage instance, why are you not using returned value? The same comment for all other calls
 
 		MyAccountPage myAccountPage = new MyAccountPage();
 		WomenPage womenPage = new WomenPage();
@@ -46,6 +50,8 @@ class AddItemsToChartTest extends BaseTest {
 		womenPage
 				.addSecondItemToCart();
 		Thread.sleep(2000);
+		//TODO
+		// Forget about Thread.sleep for forever, use explicit waiters. Explicit waiter is the only correct code when you need to wait for some event
 		String secondPrice = womenPage.getPrice();
 		String secondTotalPrice = womenPage.getTotalProductsPrice();
 		womenPage

@@ -14,3 +14,9 @@ public class JavascriptUtilities {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
 }
+
+//TODO
+// You can make all methods as static in this class
+
+//TODO
+// Why do you not use DriverFactory to get WebDriver instance?

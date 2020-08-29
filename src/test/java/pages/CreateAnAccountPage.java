@@ -17,12 +17,17 @@ public class CreateAnAccountPage extends BasePage {
 	private By accountUserName = By.cssSelector(".header_user_info .account");
 	private By aliasAddress = By.id("alias");
 
+	//TODO
+	// It makes sense to have these fields as constants (static final)
+
 	@Override
 	public CreateAnAccountPage openPage() {
 		driver.get(URL);
 		isPageOpened();
 		return this;
 	}
+	//TODO
+	// If this method has designed to be called always in openPage method, then it makes sense to implement "abstract method" pattern
 
 	@Override
 	public void isPageOpened() {

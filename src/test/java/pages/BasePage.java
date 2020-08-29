@@ -19,4 +19,6 @@ public abstract class BasePage {
 	public abstract BasePage openPage();
 
 	public abstract void isPageOpened();
+	//TODO
+	// It is unlikely for java naming convention to have method starting from "is" returning void
 }

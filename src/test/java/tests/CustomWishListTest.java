@@ -55,6 +55,8 @@ class CustomWishListTest extends BaseTest {
 		assertEquals(prop.get("name"), myWishListName);
 		assertEquals(expectedItemName, actualItemName);
 	}
+	//TODO
+	// If you need to assert multiple things, then use grouped assertions
 
 	@AfterEach
 	void clearData() {

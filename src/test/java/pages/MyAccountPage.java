@@ -26,6 +26,8 @@ public class MyAccountPage extends BasePage {
 		String expectedResult = "MY ACCOUNT";
 		assertEquals(expectedResult, openPage);
 	}
+	//TODO
+	// It is bad idea to have assertion in page object
 
 	public String accountUserName() {
 		return driver.findElement(accountUserNameTile).getText();

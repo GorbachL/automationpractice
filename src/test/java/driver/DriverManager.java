@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 public abstract class DriverManager {
 
 	protected static WebDriver driver;
+	//TODO
+	// One-thread solution, you will be not able to run tests in multiple threads
 
 	abstract void createDriver();
 

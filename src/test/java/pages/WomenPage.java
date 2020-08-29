@@ -84,6 +84,8 @@ public class WomenPage extends BasePage {
 		ScreenshotUtils.captureScreenshot();
 		return this;
 	}
+	//TODO
+	// It is just code duplication, if you will need to add 100 items, then you will add 100 equal methods? I hope no, always make you code flexible.
 
 	public WomenPage closePopupThatItemAddedToShoppingChart() {
 		driver.findElement(closePopupAfterAddingItemToShoppingCart).click();

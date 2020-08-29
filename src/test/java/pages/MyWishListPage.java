@@ -36,6 +36,8 @@ public class MyWishListPage extends BasePage {
 		assertTrue(driver.findElement(myWishListInTheTable).isDisplayed());
 		return this;
 	}
+	//TODO
+	// It is bad idea to have assertion in page object. All assertions must be in tests
 
 	public MyWishListPage deleteMyWishListFromAccount() {
 		driver.findElement(deleteWishListButton).click();

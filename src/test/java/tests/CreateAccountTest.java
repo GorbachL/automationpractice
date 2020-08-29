@@ -28,6 +28,8 @@ class CreateAccountTest extends BaseTest {
 				.MobilePhone("100500200")
 				.AddressAlias("lenag1@mailinator.com")
 				.build();
+		//TODO
+		// I recommend to move such code in class field as constant or to initialize it in before hook f.e.
 
 		RandomUtil randomUtil = new RandomUtil();
 
